@@ -63,8 +63,7 @@ public class AccountController {
 				// 入力した内容をDBバーに反映されている
 				userInfo.setPassword(password);
 				usersService.registUser(userInfo);
-				// model.~はjspに出力するためのコマンド
-				model.addAttribute("bookList", booksService.getBookList());
+				
 				// あってたから君はホームに行けるよ！
 				return "login";
 				// 間違ってた君はこちら
