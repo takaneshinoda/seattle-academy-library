@@ -31,13 +31,25 @@ public class BooksService {
 	 */
 	public List<BookInfo> getBookList() {
 
-		
 		List<BookInfo> getedBookList = jdbcTemplate.query(
-				
-				"select id, title, author, publisher, publish_date, thumbnail_url  from books ORDER BY title ASC ;",
+
+				"select id, title, author, publisher, publish_date, thumbnail_url  from books ORDER BY title ;",
 				new BookInfoRowMapper());
 
 		return getedBookList;
+	}
+
+	/**
+	 * 書籍リストを削除する
+	 *
+	 * @param bookId 書籍ID
+	 * 
+	 */
+	public void deleteBook(int bookId) {
+
+		String sql = "delete from books where id =" + bookId + ";";
+		jdbcTemplate.update(sql);
+
 	}
 
 	/**
