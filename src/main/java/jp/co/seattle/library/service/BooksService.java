@@ -42,7 +42,7 @@ public class BooksService {
 	/**
 	 * 書籍リストを削除する
 	 *
-	 * @return
+	 * @param bookId 書籍ID
 	 * 
 	 */
 	public void deleteBook(int bookId) {
