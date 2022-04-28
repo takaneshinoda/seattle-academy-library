@@ -40,7 +40,6 @@
                         </c:if> <c:if test="${bookDetailsInfo.thumbnailUrl  != 'null'}">
                             <img class="book_noimg" src="${bookDetailsInfo.thumbnailUrl}">
                         </c:if> <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}">
-                       
                     </a>
                 </div>
             </div>
@@ -78,7 +77,7 @@
             <form method="post" action="returnBook">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_returnBook">返す</button>
             </form>
-            <form method="post" action="editBook">
+            <form method="post" action="<%=request.getContextPath()%>/edit">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_editBook">編集</button>
             </form>
             <form method="post" action="deleteBook">

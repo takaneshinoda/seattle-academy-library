@@ -38,15 +38,70 @@ public class BooksService {
 
 		return getedBookList;
 	}
-		
-		
+
+	/**
+	 * 書籍情報を更新する
+	 *
+	 * @param bookId 書籍Id
+	 */
+	public void updatebookInfo(BookDetailsInfo bookInfo) {
+		String sql;
+		if( bookInfo.getThumbnailUrl() != null) {
+
+	    	    sql = "UPDATE books SET title = "
+	        		+ "'" + bookInfo.getTitle() + "'" 
+	        		+ "," 
+	        		+ "author ="
+	        		+ "'" + bookInfo.getAuthor() + "'" 
+	        		+ "," 
+	        		+ "publisher ="
+	        		+ "'" + bookInfo.getPublisher() + "'" 
+	        		+ "," 
+	        		+ "publish_date ="
+	        		+ "'" + bookInfo.getPublishDate() + "'" 
+	        		+ "," 
+	        		+ "isbn ="
+	        		+ "'" + bookInfo.getISBN() + "'" 
+	        		+ "," 
+	        		+ "description =" 
+	        		+ "'" + bookInfo.getDescription() + "'" 
+	        		+ "," 
+	        		+"thumbnail_url ="
+	        		+ "'" + bookInfo.getThumbnailUrl() + "'"  
+	        		+ "where id =" + bookInfo.getBookId() + ";";
+		}else {
+			    sql = "UPDATE books SET title = "
+	        		+ "'" + bookInfo.getTitle() + "'" 
+	        		+ "," 
+	        		+ "author ="
+	        		+ "'" + bookInfo.getAuthor() + "'" 
+	        		+ "," 
+	        		+ "publisher ="
+	        		+ "'" + bookInfo.getPublisher() + "'" 
+	        		+ "," 
+	        		+ "publish_date ="
+	        		+ "'" + bookInfo.getPublishDate() + "'" 
+	        		+ "," 
+	        		+ "isbn ="
+	        		+ "'" + bookInfo.getISBN() + "'" 
+	        		+ "," 
+	        		+ "description =" 
+	        		+ "'" + bookInfo.getDescription() + "'" 
+	        		+ "where id =" + bookInfo.getBookId() + ";";
+			
+		}
+
+	        jdbcTemplate.update(sql);
+	    
+	}
+
 	/**
 	 * 書籍リストを削除する
 	 *
 	 * @param bookId 書籍ID
 	 * 
 	 */
-	//publicは持ってくる！　deleteBookからbookIdをもってきます。 →持ってきました！　bookIdは0でした！！
+	// publicは持ってくる！ deleteBookからbookIdをもってきます。 →持ってきました！ bookIdは0でした！！
 	public void deleteBook(int bookId) {
 
 		String sql = "delete from books where id =" + bookId + ";";
@@ -80,24 +135,21 @@ public class BooksService {
 
 		String sql = "INSERT INTO books (title, author,publisher,publish_date, isbn, description, thumbnail_name, thumbnail_url, reg_date,upd_date) VALUES ('"
 				+ bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','"
-				+ bookInfo.getPublishDate() + "','"
-		        + bookInfo.getISBN() + "','"
-		        + bookInfo.getDescription() + "','"
+				+ bookInfo.getPublishDate() + "','" + bookInfo.getISBN() + "','" + bookInfo.getDescription() + "','"
 				+ bookInfo.getThumbnailName() + "','" + bookInfo.getThumbnailUrl() + "'," + "now()," + "now())";
 
 		jdbcTemplate.update(sql);
-		
+
 	}
-	
-	
+
 	/**
 	 * 最新の書籍IDを取得する
 	 *
-	 * @return 最新の書籍ID 
+	 * @return 最新の書籍ID
 	 */
-	
+
 	public int getMaxId() {
-		String sql = "SELECT max(id) FROM books "; 
+		String sql = "SELECT max(id) FROM books ";
 
 		int bookId = jdbcTemplate.queryForObject(sql, Integer.class);
 
