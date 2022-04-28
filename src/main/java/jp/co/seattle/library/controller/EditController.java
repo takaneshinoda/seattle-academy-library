@@ -34,9 +34,9 @@ public class EditController {
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST) // value＝actionで指定したパラメータ
 	// RequestParamでname属性を取得
-	public String login(@RequestParam("bookId") Integer bookId , Model model) { 
+	public String login(@RequestParam("bookId") Integer bookId, Model model) {
 		BookDetailsInfo bookDetailsInfo = booksService.getBookInfo(bookId);
-	    model.addAttribute("bookDetailsInfo", bookDetailsInfo);
+		model.addAttribute("bookDetailsInfo", bookDetailsInfo);
 		return "edit";
 	}
 
@@ -69,7 +69,7 @@ public class EditController {
 
 		// クライアントのファイルシステムにある元のファイル名を設定する
 		String thumbnail = file.getOriginalFilename();
-        
+
 		if (!file.isEmpty()) {
 			try {
 				// サムネイル画像をアップロード
@@ -117,7 +117,7 @@ public class EditController {
 		// TODO 更新した書籍の詳細情報を表示するように実装
 		// 詳細画面に遷移する
 		model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
-        return "details";
+		return "details";
 
 	}
 }
