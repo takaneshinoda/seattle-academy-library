@@ -42,57 +42,29 @@ public class BooksService {
 	/**
 	 * 書籍情報を更新する
 	 *
-	 * @param bookId 書籍Id
+	 * @param bookInfo 書籍情報
 	 */
 	public void updatebookInfo(BookDetailsInfo bookInfo) {
 		String sql;
-		if( bookInfo.getThumbnailUrl() != null) {
+		if (bookInfo.getThumbnailUrl() != null) {
 
-	    	    sql = "UPDATE books SET title = "
-	        		+ "'" + bookInfo.getTitle() + "'" 
-	        		+ "," 
-	        		+ "author ="
-	        		+ "'" + bookInfo.getAuthor() + "'" 
-	        		+ "," 
-	        		+ "publisher ="
-	        		+ "'" + bookInfo.getPublisher() + "'" 
-	        		+ "," 
-	        		+ "publish_date ="
-	        		+ "'" + bookInfo.getPublishDate() + "'" 
-	        		+ "," 
-	        		+ "isbn ="
-	        		+ "'" + bookInfo.getISBN() + "'" 
-	        		+ "," 
-	        		+ "description =" 
-	        		+ "'" + bookInfo.getDescription() + "'" 
-	        		+ "," 
-	        		+"thumbnail_url ="
-	        		+ "'" + bookInfo.getThumbnailUrl() + "'"  
-	        		+ "where id =" + bookInfo.getBookId() + ";";
-		}else {
-			    sql = "UPDATE books SET title = "
-	        		+ "'" + bookInfo.getTitle() + "'" 
-	        		+ "," 
-	        		+ "author ="
-	        		+ "'" + bookInfo.getAuthor() + "'" 
-	        		+ "," 
-	        		+ "publisher ="
-	        		+ "'" + bookInfo.getPublisher() + "'" 
-	        		+ "," 
-	        		+ "publish_date ="
-	        		+ "'" + bookInfo.getPublishDate() + "'" 
-	        		+ "," 
-	        		+ "isbn ="
-	        		+ "'" + bookInfo.getISBN() + "'" 
-	        		+ "," 
-	        		+ "description =" 
-	        		+ "'" + bookInfo.getDescription() + "'" 
-	        		+ "where id =" + bookInfo.getBookId() + ";";
-			
+			sql = "UPDATE books SET title = " + "'" + bookInfo.getTitle() + "'" + "," + "author =" + "'"
+					+ bookInfo.getAuthor() + "'" + "," + "publisher =" + "'" + bookInfo.getPublisher() + "'" + ","
+					+ "publish_date =" + "'" + bookInfo.getPublishDate() + "'" + "," + "isbn =" + "'"
+					+ bookInfo.getISBN() + "'" + "," + "description =" + "'" + bookInfo.getDescription() + "'" + ","
+					+ "thumbnail_url =" + "'" + bookInfo.getThumbnailUrl() + "'" + "where id =" + bookInfo.getBookId()
+					+ ";";
+		} else {
+			sql = "UPDATE books SET title = " + "'" + bookInfo.getTitle() + "'" + "," + "author =" + "'"
+					+ bookInfo.getAuthor() + "'" + "," + "publisher =" + "'" + bookInfo.getPublisher() + "'" + ","
+					+ "publish_date =" + "'" + bookInfo.getPublishDate() + "'" + "," + "isbn =" + "'"
+					+ bookInfo.getISBN() + "'" + "," + "description =" + "'" + bookInfo.getDescription() + "'"
+					+ "where id =" + bookInfo.getBookId() + ";";
+
 		}
 
-	        jdbcTemplate.update(sql);
-	    
+		jdbcTemplate.update(sql);
+
 	}
 
 	/**

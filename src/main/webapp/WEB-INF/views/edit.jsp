@@ -50,7 +50,6 @@
                             <c:forEach var="errorMessage" items="${addErrorMessage}">
                                 ${errorMessage}
                             </c:forEach>
-                            tes
                         </div>
                     </c:if>
                     <div>
@@ -58,17 +57,11 @@
                         <c:if test="${!empty bookDetailsInfo}">
                             <input type="text" name="title" value="${bookDetailsInfo.title}">
                         </c:if>
-                        <c:if test="${empty bookDetailsInfo}">
-                            <input type="text" name="title" autocomplete="off">
-                        </c:if>
                     </div>
                     <div>
                         <span>著者名</span><span class="care care2">必須</span>
                         <c:if test="${!empty bookDetailsInfo}">
                             <input type="text" name="author" value="${bookDetailsInfo.author}">
-                        </c:if>
-                        <c:if test="${empty bookDetailsInfo}">
-                            <input type="text" name="author" autocomplete="off">
                         </c:if>
                     </div>
                     <div>
@@ -76,17 +69,11 @@
                         <c:if test="${!empty bookDetailsInfo}">
                             <input type="text" name="publisher" value="${bookDetailsInfo.publisher}">
                         </c:if>
-                        <c:if test="${empty bookDetailsInfo}">
-                            <input type="text" name="publisher">
-                        </c:if>
                     </div>
                     <div>
                         <span>出版日</span><span class="care care2">必須</span>
                         <c:if test="${!empty bookDetailsInfo}">
                             <input type="text" name="publishDate" value="${bookDetailsInfo.publishDate}">
-                        </c:if>
-                        <c:if test="${empty bookDetailsInfo}">
-                            <input type="text" value="" placeholder="YYYYMMDD" name="publishDate">
                         </c:if>
                     </div>
                     <div>
@@ -94,17 +81,11 @@
                         <c:if test="${!empty bookDetailsInfo}">
                             <input type="text" name="ISBN" value="${bookDetailsInfo.ISBN}">
                         </c:if>
-                        <c:if test="${empty bookDetailsInfo}">
-                            <input type="text" name="ISBN">
-                        </c:if>
                     </div>
                     <div>
                         <span>説明文</span><span class="care care1">任意</span>
                         <c:if test="${!empty bookDetailsInfo}">
                             <input type="text" name="description" value="${bookDetailsInfo.description}">
-                        </c:if>
-                        <c:if test="${empty bookDetailsInfo}">
-                            <input type="text" name="description">
                         </c:if>
                     </div>
                     <input type="hidden" id="bookId" name="bookId" value="${bookDetailsInfo.bookId}">
