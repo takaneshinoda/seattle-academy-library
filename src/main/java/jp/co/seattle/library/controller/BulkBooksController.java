@@ -89,6 +89,7 @@ public class BulkBooksController {
 				bookInfo.setPublisher(bookList[2]);
 				bookInfo.setPublishDate(bookList[3]);
 				bookInfo.setISBN(bookList[4]);
+				bookInfo.setDescription(bookList[5]);
 
 				booksService.registBook(bookInfo);
 				model.addAttribute("resultMessage", "登録完了");
