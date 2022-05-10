@@ -14,11 +14,22 @@ public class RentalBooksService {
 	 *
 	 * @param bookId 書籍ID
 	 */
-
 	public void rentalBook(int bookId) {
 
 		String sql = "INSERT INTO rentalbooks ( rent_id ) VALUES (" + bookId + ");";
 
+		jdbcTemplate.update(sql);
+
+	}
+	
+	/**
+	 * 書籍IDに紐づく借りる書籍を登録する
+	 *
+	 * @param bookId 書籍ID
+	 */
+	public void returnBook(int bookId) {
+
+		String sql = "delete from rentalbooks where rent_id =" + bookId + ";";
 		jdbcTemplate.update(sql);
 
 	}
@@ -29,7 +40,6 @@ public class RentalBooksService {
 	 * @param bookId 書籍ID
 	 * @return rentId 借りる書籍ID
 	 */
-
 	public int selectrentalInfo(int bookId) {
 
 		// JSPに渡すデータを設定する
