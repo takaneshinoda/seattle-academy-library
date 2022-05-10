@@ -42,6 +42,13 @@
                         </c:if> <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}">
                     </a>
                 </div>
+                 <c:if test="${!empty addErrorMessage}">
+                        <div class="error">
+                            <c:forEach var="errorMessage" items="${addErrorMessage}">
+                                ${errorMessage}
+                            </c:forEach>
+                        </div>
+                    </c:if>
             </div>
             <div class="content_right">
                 <div>
