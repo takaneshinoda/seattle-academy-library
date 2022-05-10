@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.seattle.library.service.BooksService;
 import jp.co.seattle.library.service.RentalBooksService;
-
 @Controller
-
 public class RentalBooksController {
 
 	@Autowired
@@ -22,8 +20,6 @@ public class RentalBooksController {
 	@Autowired
 	private BooksService booksService;
 
-//	@Autowired
-//	private ThumbnailService thumbnailService;
 
 	@RequestMapping(value = "/rentBook", method = RequestMethod.POST) // value＝actionで指定したパラメータ
 	// RequestParamでname属性を取得
@@ -34,7 +30,7 @@ public class RentalBooksController {
 			rentalbooksService.rentalBook(bookId);
 
 		} else { // rentalsに書籍ID(bookId)が登録されていたら貸出できないメッセージを表示
-			model.addAttribute("addErrorMessage", "貸出済みです。");
+			model.addAttribute("errorMessage", "貸出済みです。");
 
 		}
 		model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));

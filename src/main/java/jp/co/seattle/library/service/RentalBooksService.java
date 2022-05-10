@@ -3,10 +3,7 @@ package jp.co.seattle.library.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-
-
 @Service
-
 public class RentalBooksService {
 
 	@Autowired
@@ -48,14 +45,5 @@ public class RentalBooksService {
 	}
 }
 
-//	public BookDetailsInfo selectrentalInfo(int bookId) {
-//		// TODO SQL生成
-//		String sql = "SELECT Id FROM rentalbooks Where bookId ='" + bookId +  "';";
-//		
-//		BookDetailsInfo bookDetailsInfo = jdbcTemplate.queryForObject(sql, new BookDetailsInfoRowMapper());
-//		return bookDetailsInfo;
-//
-//
-//	}
 
 
