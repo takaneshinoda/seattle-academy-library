@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.seattle.library.service.BooksService;
+import jp.co.seattle.library.service.RentalBooksService;
 
 /**
  * 削除コントローラー
@@ -23,6 +24,10 @@ public class DeleteBookController {
 
 	@Autowired
 	private BooksService booksService;
+	
+	@Autowired
+    private RentalBooksService rentalBooksService;
+	
 
 	/**
 	 * 対象書籍を削除する
@@ -37,10 +42,25 @@ public class DeleteBookController {
 	public String deleteBook(Locale locale, @RequestParam("bookId") Integer bookId, Model model) {
 
 		logger.info("Welcome delete! The client locale is {}.", locale);
-
+		
+		int rentId = rentalBooksService.selectrentalInfo(bookId);
+		if(rentId != 0) {
+			
+			model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
+			model.addAttribute("returnMessage", "貸出中です。");
+			model.addAttribute("errorMessage", "貸出中のため削除できません。");
+			
+			return "details";
+		}else {
+		//booksService.deleteBook(bookId)は持っていきなさい。
 		booksService.deleteBook(bookId);
+		
+		
+		//0が消されたから次のコマンドへ、、　HTMLにいってきて表示変えてきて
 		model.addAttribute("bookList", booksService.getBookList());
+		//終わり〜　homeいこー
 		return "home";
+		}
 
 	}
 

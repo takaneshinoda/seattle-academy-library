@@ -29,8 +29,10 @@ public class ReturnBooksContorller {
 
 		if (rentId != 0) { 
 			rentalbooksService.returnBook(bookId);
+			model.addAttribute("returnMessage", "貸出可");
 
 		} else { // rentalsに書籍ID(bookId)が登録されていたら貸出できないメッセージを表示
+			model.addAttribute("returnMessage", "貸出可");
 			model.addAttribute("errorMessage", "貸出されてないです。");
 
 		}

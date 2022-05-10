@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.co.seattle.library.service.BooksService;
+import jp.co.seattle.library.service.RentalBooksService;
 
 /**
  * 詳細表示コントローラー
@@ -23,6 +24,9 @@ public class DetailsController {
 
     @Autowired
     private BooksService bookdService;
+    
+    @Autowired
+    private RentalBooksService rentalBooksService;
 
     /**
      * 詳細画面に遷移する
@@ -38,8 +42,14 @@ public class DetailsController {
             Model model) {
         // デバッグ用ログ
         logger.info("Welcome detailsControler.java! The client locale is {}.", locale);
-
         model.addAttribute("bookDetailsInfo", bookdService.getBookInfo(bookId));
+        
+        if(rentalBooksService.selectrentalInfo(bookId) != 0) {
+        	model.addAttribute("returnMessage", "貸出中です。");
+        	
+        }else {
+        	model.addAttribute("returnMessage", "貸出可");
+        }
 
         return "details";
     }
