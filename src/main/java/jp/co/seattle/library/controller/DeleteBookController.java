@@ -47,7 +47,6 @@ public class DeleteBookController {
 		if(rentId != 0) {
 			
 			model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
-			model.addAttribute("returnMessage", "貸出中です。");
 			model.addAttribute("errorMessage", "貸出中のため削除できません。");
 			
 			return "details";

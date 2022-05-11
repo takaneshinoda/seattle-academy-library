@@ -28,15 +28,12 @@ public class RentalBooksController {
 
 		if (rentId == 0) { // rentalsに借りたい書籍ID(bookId)が登録されていなかったら貸出できる
 			rentalbooksService.rentalBook(bookId);
-			model.addAttribute("returnMessage", "貸出中です。");
 
 		} else { // rentalsに書籍ID(bookId)が登録されていたら貸出できないメッセージを表示
-			model.addAttribute("returnMessage", "貸出中です。");
 			model.addAttribute("errorMessage", "貸出済みです。");
 
 		}
 		model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
-		
 		return "details";
 
 	}
