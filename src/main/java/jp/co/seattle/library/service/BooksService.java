@@ -128,4 +128,15 @@ public class BooksService {
 
 		return bookId;
 	}
+
+	public List<BookInfo> getBookList(String title) {
+
+		List<BookInfo> getedBookList = jdbcTemplate.query(
+
+				"select id, title, author, publisher, publish_date, thumbnail_url from books where title like '%" + title + "%';",
+				new BookInfoRowMapper());
+
+		return getedBookList;
+	}
+
 }
