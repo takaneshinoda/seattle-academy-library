@@ -90,16 +90,13 @@ public class BooksService {
 	public BookDetailsInfo getBookInfo(int bookId) {
 
 		// JSPに渡すデータを設定する
-		String sql ="select * ,case when rent_id is NULL THEN '貸出可' ELSE '貸出中' end as status FROM books LEFT outer JOIN rentalbooks ON books.id = rentalbooks.rent_id where books.id =" + bookId + ";";
+		String sql = "select * ,case when rent_id is NULL THEN '貸出可' ELSE '貸出中' end as status FROM books LEFT outer JOIN rentalbooks ON books.id = rentalbooks.rent_id where books.id ="
+				+ bookId + ";";
 
-
-		// String sql = "SELECT * FROM books ORDER BY id ="+ bookId + "ASC ;";
-
-	
 		BookDetailsInfo bookDetailsInfo = jdbcTemplate.queryForObject(sql, new BookDetailsInfoRowMapper());
 
 		return bookDetailsInfo;
-		
+
 	}
 
 	/**
