@@ -20,9 +20,15 @@ public class SearchBooksController {
 
 	@Transactional
 	@RequestMapping(value = "/searchbottom", method = RequestMethod.POST)
-	public String serchBook(Locale locale, @RequestParam("search") String title, Model model) {
+	public String serchBook(Locale locale, @RequestParam("search") String title, @RequestParam("q1") String which,
+			Model model) {
 
-		model.addAttribute("bookList", booksService.searchBookList(title));
+		if (which.equals("part")) {
+
+			model.addAttribute("bookList", booksService.searchBookList(title));
+		} else {
+			model.addAttribute("bookList", booksService.allsearchBookList(title));
+		}
 
 		return "home";
 

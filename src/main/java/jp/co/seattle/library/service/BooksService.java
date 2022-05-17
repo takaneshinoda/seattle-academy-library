@@ -128,19 +128,37 @@ public class BooksService {
 
 		return bookId;
 	}
-	
+
 	/**
-	 * 最新の書籍IDを取得する
+	 * 部分の検索書籍名に対する書籍情報を取得する
 	 *
-	 *@param title 書籍名
-	 *@return 書籍名に基づく書籍情報
+	 * @param title 書籍名
+	 * @return 書籍名に基づく書籍情報
 	 */
 
 	public List<BookInfo> searchBookList(String title) {
 
 		List<BookInfo> getedBookList = jdbcTemplate.query(
 
-				"select id, title, author, publisher, publish_date, thumbnail_url from books where title like '%" + title + "%';",
+				"select id, title, author, publisher, publish_date, thumbnail_url from books where title like '%"
+						+ title + "%';",
+				new BookInfoRowMapper());
+
+		return getedBookList;
+	}
+
+	/**
+	 * 完全一致による書籍名の検索による書籍情報取得
+	 *
+	 * @param title 書籍名
+	 * @return 書籍名に基づく書籍情報
+	 */
+	public List<BookInfo> allsearchBookList(String title) {
+
+		List<BookInfo> getedBookList = jdbcTemplate.query(
+
+				"select id, title, author, publisher, publish_date, thumbnail_url from books where title = '" + title
+						+ "';",
 				new BookInfoRowMapper());
 
 		return getedBookList;
