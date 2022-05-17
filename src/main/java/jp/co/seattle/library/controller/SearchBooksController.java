@@ -14,22 +14,18 @@ import jp.co.seattle.library.service.BooksService;
 
 @Controller
 public class SearchBooksController {
-	
+
 	@Autowired
-    private BooksService booksService;
-	
-	 @Transactional
-	    @RequestMapping(value = "/searchbottom", method = RequestMethod.POST)
-	    public String serchBook(Locale locale,@RequestParam("search")String title,
-	            Model model) {
-		 
-		 
-		 
-		 model.addAttribute("bookList" , booksService.getBookList(title));
-		 
-		 return "home";
-	 
-	 }
-	
+	private BooksService booksService;
+
+	@Transactional
+	@RequestMapping(value = "/searchbottom", method = RequestMethod.POST)
+	public String serchBook(Locale locale, @RequestParam("search") String title, Model model) {
+
+		model.addAttribute("bookList", booksService.searchBookList(title));
+
+		return "home";
+
+	}
 
 }
