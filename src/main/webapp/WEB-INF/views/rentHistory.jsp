@@ -43,7 +43,7 @@
                     <c:forEach var="rentalbookInfo" items="${rentalbookList}">
                         <input type="hidden" name="bookId" value="${rentalbookInfo.bookId}">
                         <tr>
-                            <td><form method="post" action="<%=request.getContextPath()%>/rentdate">
+                            <td><form method="get" action="<%=request.getContextPath()%>/rentdate">
                                     <input type="hidden" name="bookId" value="${rentalbookInfo.bookId}"><a href="javascript:void(0)" onclick="this.parentNode.submit();"> ${rentalbookInfo.title}</a>
                                 </form></td>
                             <td>${rentalbookInfo.lendDate}</td>
