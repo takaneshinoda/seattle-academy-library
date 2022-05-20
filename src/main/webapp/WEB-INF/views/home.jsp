@@ -32,7 +32,7 @@
             </div>
             <div class="f_item">
                 <form action="searchbottom" method="post">
-                    <input type="search" name="search" class="search1">
+                    <input type="search" name="search" class="search1"> <input type="radio" name="q1" value="part" checked> 部分一致 <input type="radio" name="q1" value="all"> 完全一致
                     <button type="submit" class="search_box">検索</button>
                 </form>
             </div>
