@@ -1,5 +1,7 @@
 package jp.co.seattle.library.dto;
 
+import java.sql.Date;
+
 import org.springframework.context.annotation.Configuration;
 
 import lombok.Data;
@@ -12,15 +14,15 @@ public class RentalBookInfo {
 
 	private String title;
 
-	private java.sql.Date lendDate;
+	private Date lendDate;
 
-	private java.sql.Date returnDate;
+	private Date returnDate;
 
 	public RentalBookInfo() {
 
 	}
 
-	public RentalBookInfo(int bookId, String title, java.sql.Date lenddate, java.sql.Date returndate) {
+	public RentalBookInfo(int bookId, String title, Date lenddate, Date returndate) {
 		this.bookId = bookId;
 		this.title = title;
 		this.lendDate = lenddate;

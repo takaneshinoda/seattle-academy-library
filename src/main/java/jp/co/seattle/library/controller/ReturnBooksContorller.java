@@ -1,5 +1,6 @@
 package jp.co.seattle.library.controller;
 
+import java.util.Date;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class ReturnBooksContorller {
 	@RequestMapping(value = "/returnBook", method = RequestMethod.POST)
 
 	public String login(Locale locale, @RequestParam("bookId") int bookId, Model model) {
-		java.sql.Date lendDate = rentalbooksService.selectlendInfo(bookId);
+		Date lendDate = rentalbooksService.selectlendInfo(bookId);
 
 		if (lendDate != null) {
 			rentalbooksService.returnBook(bookId);

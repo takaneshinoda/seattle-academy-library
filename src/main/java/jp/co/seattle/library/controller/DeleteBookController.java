@@ -1,5 +1,6 @@
 package jp.co.seattle.library.controller;
 
+import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -43,8 +44,8 @@ public class DeleteBookController {
 
 		logger.info("Welcome delete! The client locale is {}.", locale);
 		
-		int rentId = rentalBooksService.selectrentalInfo(bookId);
-		if(rentId != 0) {
+		Date lendDate = rentalBooksService.selectlendInfo(bookId);
+		if(lendDate != null) {
 			
 			model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
 			model.addAttribute("errorMessage", "貸出中のため削除できません。");

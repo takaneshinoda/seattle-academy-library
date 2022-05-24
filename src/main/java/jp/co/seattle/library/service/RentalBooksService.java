@@ -1,5 +1,6 @@
 package jp.co.seattle.library.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,13 +60,13 @@ public class RentalBooksService {
 	 * 
 	 * @return lendDate 貸出日 
 	 */
-	public java.sql.Date selectlendInfo(int bookId) {
+	public Date selectlendInfo(int bookId) {
 
 		// JSPに渡すデータを設定する
 		String sql = "SELECT lend_date FROM rentalbooks where rent_id =" + bookId + ";";
 		
 		try {
-			java.sql.Date lendDate = jdbcTemplate.queryForObject(sql, java.sql.Date.class);
+			Date lendDate = jdbcTemplate.queryForObject(sql, Date.class);
 			return  lendDate;
 		} catch (Exception e) {
 			return null;
