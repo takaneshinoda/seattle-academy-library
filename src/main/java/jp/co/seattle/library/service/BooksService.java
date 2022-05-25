@@ -33,7 +33,7 @@ public class BooksService {
 
 		List<BookInfo> getedBookList = jdbcTemplate.query(
 
-				"select id, title, author, publisher, publish_date, thumbnail_url  from books ORDER BY title ;",
+				"select id, title, author, publisher, publish_date, thumbnail_url from books ORDER BY title ;",
 				new BookInfoRowMapper());
 
 		return getedBookList;
@@ -76,7 +76,7 @@ public class BooksService {
 	// publicは持ってくる！ deleteBookからbookIdをもってきます。 →持ってきました！ bookIdは0でした！！
 	public void deleteBook(int bookId) {
 
-		String sql = "delete from books where id =" + bookId + ";";
+		String sql = "with bye as(delete from books where id = " + bookId + ") delete from rentalbooks where rent_id = " + bookId + ";";
 		jdbcTemplate.update(sql);
 
 	}
@@ -90,7 +90,7 @@ public class BooksService {
 	public BookDetailsInfo getBookInfo(int bookId) {
 
 		// JSPに渡すデータを設定する
-		String sql = "select * ,case when rent_id is NULL THEN '貸出可' ELSE '貸出中' end as status FROM books LEFT outer JOIN rentalbooks ON books.id = rentalbooks.rent_id where books.id ="
+		String sql = "select * ,case when lend_date is NULL THEN '貸出可' ELSE '貸出中' end as status FROM books LEFT outer JOIN rentalbooks ON books.id = rentalbooks.rent_id where books.id ="
 				+ bookId + ";";
 
 		BookDetailsInfo bookDetailsInfo = jdbcTemplate.queryForObject(sql, new BookDetailsInfoRowMapper());
@@ -163,5 +163,5 @@ public class BooksService {
 
 		return getedBookList;
 	}
-
+	
 }
